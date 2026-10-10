@@ -57,7 +57,11 @@ public class Configuration {
         loadEnvironmentVariables();
         setDefaults();
 
-        if (profile == Profile.Server) {
+        if (profile == Profile.Local) {
+            // Property defaults are set above; apply them into the runtime feature flags
+            // (configureFeatures() is server-only because it assumes other server feature defaults).
+            features.configure(Features.UI_DSL_EDITOR, Boolean.parseBoolean(getProperty(Features.UI_DSL_EDITOR)));
+        } else if (profile == Profile.Server) {
             configureFeatures();
             setAdminUsersAndRoles(getProperty(ADMIN_USERS_AND_ROLES).split(COMMA));
         }
