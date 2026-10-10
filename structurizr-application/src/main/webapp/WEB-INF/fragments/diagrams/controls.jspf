@@ -62,6 +62,12 @@
         </div>
         <script nonce="${scriptNonce}">$('#editDiagramButton').click(function() { window.location.href='/workspace/${workspace.id}/diagram-editor<c:out value="${urlSuffix}" escapeXml="false" />#' + window.location.hash.substring(1); });</script>
         </c:if>
+        <c:if test="${workspace.editable && dslEditorEnabled}">
+        <div id="dslEditorButton" class="btn-group">
+            <button class="btn btn-default" title="DSL editor"><img src="/static/bootstrap-icons/code-slash.svg" class="icon-btn" /></button>
+        </div>
+        <script nonce="${scriptNonce}">$('#dslEditorButton').click(function() { window.location.href='<c:out value="${urlPrefix}" />/dsl-editor<c:out value="${urlSuffix}" escapeXml="false" />'; });</script>
+        </c:if>
     </div>
 </div>
 
@@ -121,6 +127,13 @@
             $('#openAutoLayoutModalButton').click(function() { openAutoLayoutModal(); });
             $('#undoButton').click(function() { structurizr.diagram.undo(); });
         </script>
+
+        <c:if test="${dslEditorEnabled}">
+        <div class="btn-group">
+            <button id="dslEditorFromEditorButton" class="btn btn-default" title="DSL editor"><img src="/static/bootstrap-icons/code-slash.svg" class="icon-btn" /></button>
+        </div>
+        <script nonce="${scriptNonce}">$('#dslEditorFromEditorButton').click(function() { window.location.href='<c:out value="${urlPrefix}" />/dsl-editor<c:out value="${urlSuffix}" escapeXml="false" />'; });</script>
+        </c:if>
 
         <c:if test="${(structurizrConfiguration.profile eq 'Local') || (structurizrConfiguration.profile eq 'Server' && not embed)}">
         <div class="btn-group">

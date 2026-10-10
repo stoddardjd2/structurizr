@@ -286,6 +286,8 @@ public class Configuration {
             setDefault(WORKSPACES_PROPERTY, SINGLE_WORKSPACE);
             setDefault(AUTO_SAVE_INTERVAL_PROPERTY, DEFAULT_AUTO_SAVE_INTERVAL_IN_MILLISECONDS);
             setDefault(AUTO_REFRESH_INTERVAL_PROPERTY, DEFAULT_AUTO_REFRESH_INTERVAL_IN_MILLISECONDS);
+            // Local is single-user on localhost — enable the browser DSL editor by default.
+            setDefault(Features.UI_DSL_EDITOR, TRUE);
         } else if (profile == Profile.Server) {
             setDefault(SESSION_IMPLEMENTATION, SESSION_VARIANT_LOCAL);
             setDefault(URL, "");

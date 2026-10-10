@@ -116,6 +116,13 @@
             </div>
             </c:if>
 
+            <c:if test="${workspace.editable && dslEditorEnabled}">
+            <div class="navigationItem dslEditorNavigation">
+                <a href="<c:out value="${urlPrefix}" />/dsl-editor<c:out value="${urlSuffix}" escapeXml="false" />"><img src="/static/bootstrap-icons/code-slash.svg" class="icon-sm" /> DSL editor</a>
+            </div>
+            <div class="navigationItemSeparator"></div>
+            </c:if>
+
             <c:if test="${structurizrConfiguration.profile == 'Server'}">
 
             <div id="imagesLink" class="navigationItem hidden">
@@ -123,12 +130,6 @@
             </div>
 
             <div class="navigationItemSeparator"></div>
-
-            <c:if test="${workspace.editable && dslEditorEnabled}">
-            <div class="navigationItem dslEditorNavigation">
-                <a href="<c:out value="${urlPrefix}" />/dsl-editor<c:out value="${urlSuffix}" escapeXml="false" />"><img src="/static/bootstrap-icons/code-slash.svg" class="icon-sm" /> DSL editor</a>
-            </div>
-            </c:if>
 
             <div id="exportDslLink" class="navigationItem">
                 <img src="/static/bootstrap-icons/filetype-txt.svg" class="icon-sm" /> <a href="${urlPrefix}/dsl${urlSuffix}" target="_blank">DSL</a>

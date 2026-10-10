@@ -168,6 +168,18 @@ abstract class LocalFileSystemWorkspaceAdapter extends AbstractFileSystemWorkspa
                 writer.write(json);
                 writer.flush();
             }
+
+            // Keep workspace.dsl in sync when the UI/API saves a workspace that embeds DSL source
+            // (browser DSL editor). Prefer dsl as the authoring artifact for local file workflows.
+            try {
+                Workspace workspace = WorkspaceUtils.fromJson(json);
+                String dsl = DslUtils.getDsl(workspace);
+                if (!StringUtils.isNullOrEmpty(dsl)) {
+                    FileUtils.write(new File(workspaceDirectory, WORKSPACE_DSL_FILENAME), dsl);
+                }
+            } catch (Exception e) {
+                log.warn("Could not write " + WORKSPACE_DSL_FILENAME, e);
+            }
         } catch (Exception e) {
             log.error(e);
             throw new WorkspaceComponentException(e.getMessage());

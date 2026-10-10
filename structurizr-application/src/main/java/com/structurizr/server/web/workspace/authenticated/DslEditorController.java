@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Controller
-@Profile("command-server")
+@Profile({"command-server", "command-local"})
 public class DslEditorController extends AbstractWorkspaceController {
 
     private static final Log log = LogFactory.getLog(DslEditorController.class);
